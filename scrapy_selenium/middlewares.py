@@ -32,16 +32,16 @@ class SeleniumMiddleware:
         driver_klass_module = import_module(f'{webdriver_base_path}.webdriver')
         driver_klass = getattr(driver_klass_module, 'WebDriver')
 
-        driver_options_module = import_module(f'{webdriver_base_path}.options')
-        driver_options_klass = getattr(driver_options_module, 'Options')
+### ALEXEI COMMENTED        driver_options_module = import_module(f'{webdriver_base_path}.options')
+### ALEXEI COMMENTED        driver_options_klass = getattr(driver_options_module, 'Options')
 
-        driver_options = driver_options_klass()
-        for argument in driver_arguments:
-            driver_options.add_argument(argument)
+### ALEXEI COMMENTED        driver_options = driver_options_klass()
+### ALEXEI COMMENTED        for argument in driver_arguments:
+### ALEXEI COMMENTED            driver_options.add_argument(argument)
 
         driver_kwargs = {
             'executable_path': driver_executable_path,
-            f'{driver_name}_options': driver_options
+### ALEXEI COMMENTED            f'{driver_name}_options': driver_options
         }
 
         self.driver = driver_klass(**driver_kwargs)
@@ -73,7 +73,8 @@ class SeleniumMiddleware:
         """Process a request using the selenium driver if applicable"""
 
         if not isinstance(request, SeleniumRequest):
-            return request
+### ALEXEI COMMENTED            return request
+            return None
 
         self.driver.get(request.url)
 
